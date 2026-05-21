@@ -28,13 +28,11 @@ class WeatherHomeViewModel @Inject constructor(
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
                 val result = getCitiesWeatherUseCase(cities)
-                Log.d("WeatherHomeViewModel", "Fetched weather data: $result")
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
                         weatherList = result
                 )
             } catch (e: Exception) {
-                Log.e("WeatherHomeViewModel" ,"Error fetching weather data", e)
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
                     error = e.message ?: "An unexpected error occurred"
